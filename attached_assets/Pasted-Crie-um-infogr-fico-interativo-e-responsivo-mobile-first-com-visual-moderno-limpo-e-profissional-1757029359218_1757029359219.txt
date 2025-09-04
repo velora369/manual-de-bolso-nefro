@@ -1,0 +1,144 @@
+Crie um infográfico interativo e responsivo (mobile-first), com visual moderno, limpo e profissional, para consulta rápida por profissionais de saúde. Siga as instruções básicas abaixo e desenvolva o restante livremente.
+
+Objetivo
+
+Organizar o conteúdo em seções claras, com leitura escaneável e hierarquia visual simples.
+
+Garantir boa legibilidade no celular e no desktop.
+
+Incluir interações básicas para facilitar navegação e referência.
+
+Paleta de cores (obrigatória)
+
+Branco: #ffffff
+
+Verde acinzentado (cor principal de símbolos e textos de destaque): #779d86
+
+Cinza claro: #e6e8e7
+
+Interações básicas desejadas
+
+Sumário/índice navegável (TOC) que leva às seções.
+
+Seções longas podem ser recolhíveis/expansíveis.
+
+Tabelas fáceis de visualizar no celular (com opção de copiar/baixar como CSV).
+
+Busca simples para localizar termos/seções.
+
+Opção de imprimir/salvar como PDF com formatação limpa.
+
+Acessibilidade e leitura
+
+Tamanho de fonte confortável, contraste adequado, espaçamento generoso.
+
+Textos objetivos, listas com marcadores para passos.
+
+Destaque visual discreto para “Atenção/Contraindicações”.
+
+Estrutura de seções (em âncoras)
+
+Capa
+
+Internação & Pré-operatório
+
+Prescrição Inicial (Receptor)
+
+Intraoperatório
+
+Pós-op UTI (48–72h)
+
+Enfermaria (D2–D7) + Profilaxias
+
+Alta Hospitalar (D7–D10)
+
+Fluxos Legais (CET-PA/SNT)
+
+Adendo – Imunossupressão (IS)
+
+Onde fizer sentido, apresente tabelas para:
+— “Prescrição Inicial (Receptor)” (Medicação | Esquema)
+— “Pós-op UTI” (Aspecto | Conduta)
+— “Enfermaria + Profilaxias” (Alvo | Esquema | Duração)
+
+Conteúdo (renderizar fielmente):
+Manual de Bolso – Transplante Renal com DOADOR FALECIDO (HRBA)
+
+Internação & Pré-operatório
+• O paciente pré-selecionado pelo ranking é encaminhado ao Acolhimento para internação hospitalar pelo nefrologista de plantão na hemodiálise.
+• Confirmar tipagem ABO e crossmatch negativo.
+• Revisar pré-TX: sorologias, doppler, documentação.
+• Avaliar necessidade de diálise (K>5,5) e peso seco.
+• Anamnese e exame físico do receptor, preferencialmente com POCUS multiorgânico.
+• Documentos necessários para internação: AIH em 2 vias, Admissão médica/Plano terapêutico, formulário de internação de urgência, termo de aceite de rim de doador falecido, termo para procedimentos especiais, consentimento informado para hemocomponentes, solicitação de reserva de sangue, prescrição médica*, aviso cirúrgico.
+• Exames: RX tórax, ECG, hemograma, coagulograma, eletrólitos, função renal/hepática, gasometria, β-HCG (mulher fértil), tipagem sanguínea.
+• Prescrição médica: Atenção para reconciliação medicamentosa, especialmente antidepressivos, anticonvulsivantes, antiarrítmicos, medicações para asma, hormônios tiroidianos e insulina.
+• Preencher Folhão e reservar hemocomponentes.
+
+Prescrição Inicial (Receptor)
+Medicação Esquema
+Metilprednisolona (Solumedrol) 1000 mg EV antes da reperfusão
+Tacrolimo 0,1 mg/kg VO 12/12h – alvo precoce: 8–12 ng/mL
+Micofenolato sódico 360 mg VO 12/12h – 50% da dose plena se indução deplecional
+Profilaxia para Strongyloides Albendazol 400 mg VO 1x/dia por 3 dias
+Profilaxia gástrica/anti-H1 Conforme protocol
+
+Intraoperatório
+• Profilaxia antibiótica: Cefazolina 1 g EV 8/8h por 24 h.
+• Manter antibiótico do doador se já em uso.
+• PAM 80–100 mmHg; volume guiado por clínica/GID/POCUS.
+• Metilprednisolona (Solumedrol) 1000 mg EV antes da abertura dos clamps.
+• Considerar manitol e furosemida.
+• Extubar em sala se possível.
+• Avisar Radiologia para doppler imediato do enxerto.
+
+Pós-op UTI (48–72h)
+• Solicitar Doppler renal na chegada à UTI (protocolar HRBA).
+• Hidratação: >1000 ml/24h → repor ~50%; anúria/diurese <500 ml/24h → evitar reposição cega.
+• Manter imunossupressão oral: Tacrolimo + Micofenolato + Prednisona.
+• Monitorizar tacrolimo 3×/semana até meta.
+• Indicar diálise se: hipercalemia, sobrecarga volêmica, acidose grave, uremia sintomática, oligúria.
+Aspecto Conduta
+Imunossupressão oral Tacrolimo 0,1 mg/kg 12/12h; Micofenolato 360 mg 12/12h; Prednisona 0,5 mg/kg/dia
+Indução Thymoglobulina (rATG) 3 mg/kg EV (exceto MM zero). Se DSA: +1+1 mg/kg
+Diluição e Infusão 3 mg/kg em SF/SG5% 500 ml, BI 10h após estabilidade clínica
+Pré-medicação Hidrocortisona 200 mg EV + Dipirona 2 ml EV + Cimetidina 150 mg EV + Difenidramina ou Loratadina 10 mg VO
+Contraindicações Infecção ativa, febre, plaquetas <100.000, linfócitos <200/µL
+
+Enfermaria (D2–D7) + Profilaxias
+• Hidratação venosa 2–3 L/dia se diurese adequada; migrar para VO a partir do D3.
+• Retirar SVD D5–D7; retirar dreno se débito <70 ml/24 h; retirar CVC precocemente quando seguro.
+• Exames diários até D7; Tacrolimo 2-3×/semana.
+• Imunossupressão plena após indução: Tacrolimo 0,1–0.15 mg/kg 12/12h + Micofenolato 720 mg 12/12h.
+• Avaliar risco de TVP: Heparina 5.000 UI SC 8/12h se seguro.
+Alvo Esquema Duração
+Candida Nistatina suspensão ou Clotrimazol pastilhas 1–3 meses
+PCP TMP-SMX (Bactrim) 400/80 mg 1 cp/dia 6–12 meses
+CMV Valganciclovir VO (ajustar TFG) ou Ganciclovir EV (IgG-) metade da dose 3–6 meses (≥6 em alto risco)
+TB latent Isoniazida 300 mg + Piridoxina 6–9 meses
+
+Alta Hospitalar (D7–D10)
+• Definida pelo Nefrologista
+• Alta com consultas marcadas (uro e nefro) e medicamentos imunossupressores em mãos.
+• Uso rigoroso dos imunossupressores em horários fixos.
+• Orientar sinais de alerta: febre, dor/incisão, ↓ diurese, diarreia intensa, cefaleia/HTA, dispneia.
+• Evitar AINEs e interações relevantes (ex.: macrolídeos, azólicos ↑ tacrolimo).
+• Consultas: 2–3×/semana no 1º mês; dosar tacrolimo em todas.
+• Cuidados com ferida operatória e fotoproteção.
+
+Fluxos Legais (CET-PA/SNT)
+• Comunicar CET-PA após o transplante.
+• Homologar o transplante até 15 dias.
+• Seguir Portaria GM/MS nº 2.600/2009 e ABTO.
+
+Adendo – Pontos importantes sobre Imunossupressão (IS) para o Nefrologista
+• Aceite de rim: apenas com prova cruzada negativa; se DSA presente, aceitar apenas se < 2500 MFI.
+• DSA tem mais importância clínica do que o PRA.
+• Sempre considerar o risco imunológico do receptor e características do doador.
+• Regime padrão: indução + Tacrolimo + Corticoide + Micofenolato.
+• Doador vivo idêntico NÃO recebe terapia de indução.
+• Alternativas ao Micofenolato: Azatioprina e inibidores de mTOR, indicados em risco baixo a moderado e rins de critério padrão.
+
+Rodapé
+Referências: KDIGO (2020); Sociedade Brasileira de Nefrologia (SBN); Associação Brasileira de Transplante de Órgãos (ABTO); Registro Brasileiro de Transplantes (RBT).
+Nota: Material de apoio rápido; não substitui protocolos institucionais.
