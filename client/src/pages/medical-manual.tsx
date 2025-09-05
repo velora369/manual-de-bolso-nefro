@@ -148,21 +148,23 @@ export default function MedicalManual() {
               <SearchBar onSearch={handleSearch} sections={sections} data-testid="search-input" />
             </div>
             
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               <Button
                 onClick={toggleAllSections}
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 flex-shrink-0"
                 data-testid="button-expand-all"
               >
                 {isAllExpanded ? (
                   <>
-                    <Combine className="w-4 h-4 mr-2" />
-                    Recolher Tudo
+                    <Combine className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Recolher Tudo</span>
+                    <span className="sm:hidden sr-only">Recolher Tudo</span>
                   </>
                 ) : (
                   <>
-                    <ExpandIcon className="w-4 h-4 mr-2" />
-                    Expandir Tudo
+                    <ExpandIcon className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Expandir Tudo</span>
+                    <span className="sm:hidden sr-only">Expandir Tudo</span>
                   </>
                 )}
               </Button>

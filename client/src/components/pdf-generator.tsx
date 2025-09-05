@@ -52,18 +52,24 @@ export default function PDFGenerator({
     <Button
       onClick={downloadPDF}
       disabled={isDownloading}
-      className="bg-accent text-accent-foreground hover:bg-accent/90"
+      className="bg-accent text-accent-foreground hover:bg-accent/90 flex-shrink-0"
       data-testid={testId}
     >
       {isDownloading ? (
         <>
           <LoaderIcon className="w-4 h-4 mr-2 animate-spin" />
-          Baixando...
+          <span className="hidden sm:inline">Baixando...</span>
+          <span className="sm:hidden">...</span>
         </>
       ) : (
         <>
-          <FileTextIcon className="w-4 h-4 mr-2" />
-          Baixar Manual de Bolso Personalizado
+          <FileTextIcon className="w-4 h-4 sm:mr-2" />
+          {/* Desktop text */}
+          <span className="hidden lg:inline">Baixar Manual de Bolso Personalizado</span>
+          {/* Tablet text */}
+          <span className="hidden sm:inline lg:hidden">Manual PDF</span>
+          {/* Mobile - icon only */}
+          <span className="sm:hidden sr-only">Baixar Manual PDF</span>
         </>
       )}
     </Button>
