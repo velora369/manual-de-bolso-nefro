@@ -478,17 +478,8 @@ export default function PDFGenerator({
         author: 'Dr. Emanuel Esposito - Médico Nefrologista | CRM-PA: 9173',
         subject: 'Manual de Transplante Renal - Infográfico Médico',
         keywords: 'transplante, renal, nefrologia, medicina, HRBA, KDIGO, protocolo médico',
-        creator: 'Sistema de Geração de PDF Médico - V2.0',
-        producer: 'Dr. Emanuel Esposito - CRM-PA: 9173',
+        creator: 'Sistema de Geração de PDF Médico - V2.0 | Dr. Emanuel Esposito - CRM-PA: 9173',
         creationDate: new Date()
-      });
-      
-      // Enhanced quality settings for 300 DPI equivalent
-      doc.setProperties({
-        ...doc.getProperties(),
-        'custom:quality': '300dpi',
-        'custom:version': '2.0',
-        'custom:format': 'infografico'
       });
 
       // Save the PDF
