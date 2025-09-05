@@ -84,6 +84,53 @@
   .search-highlight {
     @apply bg-yellow-200 font-semibold;
   }
+
+  /* Microinterações e Acessibilidade */
+  .interactive-element {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .interactive-element:hover {
+    @apply transform scale-105;
+  }
+  
+  .interactive-element:focus {
+    @apply ring-2 ring-primary ring-offset-2 outline-none;
+  }
+  
+  .interactive-element:active {
+    @apply transform scale-95;
+  }
+
+  /* Navegação por teclado */
+  .keyboard-navigable:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 outline-none;
+  }
+
+  /* Estados de hover suaves */
+  .smooth-hover {
+    @apply transition-colors duration-200 ease-in-out;
+  }
+
+  /* Animações reduzidas para usuários que preferem */
+  @media (prefers-reduced-motion: reduce) {
+    .section-content,
+    .interactive-element,
+    .smooth-hover {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
+  /* Melhor contraste para acessibilidade */
+  .high-contrast {
+    @apply text-foreground bg-background border-border;
+  }
+
+  /* Foco visível para elementos interativos */
+  .focusable:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 outline-none;
+  }
 }
 
 @media print {

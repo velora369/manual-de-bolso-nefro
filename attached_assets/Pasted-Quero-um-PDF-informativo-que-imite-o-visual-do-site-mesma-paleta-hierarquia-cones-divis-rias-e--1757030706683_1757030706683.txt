@@ -1,0 +1,71 @@
+Quero um PDF informativo que imite o visual do site (mesma paleta, hierarquia, ícones, divisórias e destaques), apenas com adaptações mínimas para leitura offline e impressão. O conteúdo é o mesmo do manual. Siga:
+
+Identidade e créditos
+
+Usar exatamente as cores do site: Branco #ffffff, Verde acinzentado #779d86 (principal) e Cinza claro #e6e8e7.
+
+Repetir no PDF a linha de créditos: “Desenvolvido pelo Dr. Emanuel Esposito — Médico Nefrologista | CRM-PA: 9173 | RQE CM: 8787 | RQE NEFRO: 8786”.
+
+Estrutura do PDF
+
+Capa com título do manual + créditos do Dr. Emanuel.
+
+Sumário clicável com os mesmos títulos/âncoras do site.
+
+Todas as seções em ordem, mantendo títulos, listas e quadros de destaque.
+
+Rodapé com referências e a nota “Material de apoio rápido; não substitui protocolos institucionais.”
+
+Exibir data/hora de geração e “Página X de Y”.
+
+Equivalência visual (mesmo look & feel)
+
+Títulos, subtítulos e espaçamentos iguais aos do site (hierarquia clara).
+
+Divisórias e badges na cor principal.
+
+Quadros de destaque (Atenção/Contraindicações/Dica) com o mesmo estilo do site.
+
+Ícones iguais aos do site (podem ser vetoriais).
+
+Listas com marcadores reais (bullets/checks), nunca texto corrido.
+
+Interação → versão estática
+
+Expandir todo conteúdo que no site é colapsável (acordeões).
+
+Onde houver abas, mostrar a visão principal e, quando fizer sentido, incluir a alternativa (ex.: “Tabela” e “Cartões”) em sequência, com subtítulos.
+
+Tabelas com cabeçalho destacado, listras sutis (“zebra”), linhas e colunas legíveis. Repetir cabeçalho quando a tabela quebrar de página. Não quebrar linha no meio de uma célula.
+
+Checklist virar lista com caixas marcadas/“✓”.
+
+Navegação e referências
+
+Criar bookmarks/marcadores de navegação (uma entrada por seção).
+
+Incluir QR code e link para a versão interativa online na capa e no rodapé das páginas do sumário.
+
+Leitura e impressão
+
+Layout de uma coluna, margens confortáveis, sem textos colados na borda.
+
+Sem hifenização forçada; evitar viúvas/órfãs; alinhamento à esquerda.
+
+Manter alto contraste e tamanhos de fonte confortáveis.
+
+Qualidade do arquivo
+
+Incorporar fontes e ícones em vetor para nitidez.
+
+Imagens, se houver, em boa definição; tamanho final do PDF otimizado (leve).
+
+Metadados do documento preenchidos (título e autor).
+
+Critérios de aceite
+
+O PDF parece o site (cores, títulos, divisórias, ícones e destaques idênticos).
+
+Sumário e marcadores clicáveis; tabelas legíveis; quadros de “Atenção/Contraindicações” preservados.
+
+Créditos do Dr. Emanuel visíveis na capa e consistentes com o cabeçalho do site.
