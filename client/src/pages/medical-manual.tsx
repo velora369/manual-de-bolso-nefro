@@ -99,7 +99,7 @@ export default function MedicalManual() {
             
             // Expand the section if it's collapsed
             if (!expandedSections.has(sectionId)) {
-              setExpandedSections(prev => new Set([...prev, sectionId]));
+              setExpandedSections(prev => new Set(Array.from(prev).concat(sectionId)));
             }
           } catch (e) {
             console.warn(`Error scrolling to section: ${sectionId}`, e);
