@@ -63,13 +63,13 @@ export default function PDFGenerator({
         </>
       ) : (
         <>
-          <FileTextIcon className="w-4 h-4 sm:mr-2" />
+          <FileTextIcon className="w-4 h-4 mr-2" />
           {/* Desktop text */}
           <span className="hidden lg:inline">Baixar Manual de Bolso Personalizado</span>
           {/* Tablet text */}
           <span className="hidden sm:inline lg:hidden">Manual PDF</span>
-          {/* Mobile - icon only */}
-          <span className="sm:hidden sr-only">Baixar Manual PDF</span>
+          {/* Mobile text */}
+          <span className="sm:hidden">Baixe o material</span>
         </>
       )}
     </Button>
