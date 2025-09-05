@@ -20,38 +20,62 @@ export default function TableOfContents({
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -35% 0px",
-      threshold: 0
-    };
+    let observer: IntersectionObserver | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      let currentActiveSection = "";
-      
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          currentActiveSection = entry.target.id;
+    // Add a small delay to ensure DOM is fully rendered
+    timeoutId = setTimeout(() => {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-20% 0px -35% 0px",
+        threshold: 0
+      };
+
+      const observerCallback = (entries: IntersectionObserverEntry[]) => {
+        // Use requestAnimationFrame to avoid DOM manipulation conflicts
+        requestAnimationFrame(() => {
+          let currentActiveSection = "";
+          
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.target && entry.target.id) {
+              currentActiveSection = entry.target.id;
+            }
+          });
+
+          if (currentActiveSection) {
+            setActiveSection(currentActiveSection);
+          }
+        });
+      };
+
+      observer = new IntersectionObserver(observerCallback, observerOptions);
+
+      // Observe all sections with safety checks
+      sections.forEach((section) => {
+        if (section && section.id) {
+          const element = document.getElementById(section.id);
+          if (element && element.isConnected && observer) {
+            try {
+              observer.observe(element);
+            } catch (e) {
+              console.warn(`Failed to observe element with id: ${section.id}`, e);
+            }
+          }
         }
       });
-
-      if (currentActiveSection) {
-        setActiveSection(currentActiveSection);
-      }
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Observe all sections
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+    }, 100);
 
     return () => {
-      observer.disconnect();
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      if (observer) {
+        try {
+          observer.disconnect();
+        } catch (e) {
+          console.warn('Error disconnecting observer:', e);
+        }
+      }
     };
   }, [sections]);
 

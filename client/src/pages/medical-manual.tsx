@@ -87,9 +87,29 @@ export default function MedicalManual() {
   };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try {
+      if (!sectionId) return;
+      
+      const element = document.getElementById(sectionId);
+      if (element && element.isConnected) {
+        // Use requestAnimationFrame to avoid DOM conflicts
+        requestAnimationFrame(() => {
+          try {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Expand the section if it's collapsed
+            if (!expandedSections.has(sectionId)) {
+              setExpandedSections(prev => new Set([...prev, sectionId]));
+            }
+          } catch (e) {
+            console.warn(`Error scrolling to section: ${sectionId}`, e);
+          }
+        });
+      } else {
+        console.warn(`Element with id "${sectionId}" not found or not connected to DOM`);
+      }
+    } catch (e) {
+      console.error(`Error in scrollToSection: ${sectionId}`, e);
     }
   };
 
