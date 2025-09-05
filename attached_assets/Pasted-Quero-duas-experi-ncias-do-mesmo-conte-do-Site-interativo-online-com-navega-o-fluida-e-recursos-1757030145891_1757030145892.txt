@@ -1,0 +1,92 @@
+Quero duas experiências do mesmo conteúdo:
+
+Site interativo (online) com navegação fluida e recursos de UX/UI.
+
+PDF estático (download) com o mesmo visual e hierarquia do site.
+
+Identidade
+
+Paleta fixa: Branco #ffffff, Verde acinzentado #779d86 (principal) e Cinza claro #e6e8e7.
+
+Cabeçalho deve exibir, de forma visível:
+“Desenvolvido pelo Dr. Emanuel Esposito — Médico Nefrologista | CRM-PA: 9173 | RQE CM: 8787 | RQE NEFRO: 8786”.
+
+Objetivo de UX (site interativo)
+
+Sumário inteligente (TOC) com indicação da seção ativa durante a rolagem e links âncora.
+
+Busca rápida que filtra seções/termos e mostra contagem por seção.
+
+Acordeões em listas longas com “Ver detalhes/Esconder”.
+
+Abas para alternar exibição de dados (ex.: “Tabela | Cartões”).
+
+Checklist de passos com opção de marcar concluído e manter estado ao retornar.
+
+Destaques clínicos (Atenção / Contraindicações / Dica) em caixas com acento na cor principal.
+
+Glossário inline: termos-chave com dica/tooltip ao passar o mouse ou tocar.
+
+Navegação auxiliar: botão “voltar ao topo” e links “próxima/anterior seção”.
+
+Tabelas amigáveis no celular (rolagem horizontal) + botão “Copiar/Exportar CSV”.
+
+Microinterações discretas (hover/click, foco visível) e respeito a preferência do usuário para reduzir animações.
+
+Acessibilidade básica: contraste adequado, fonte legível, espaçamento confortável, navegação por teclado.
+
+Equivalência visual no PDF (download)
+
+Gerar um PDF informativo com aparência igual ao site (cores, ícones, divisórias, badges, títulos, espaçamentos e organização por seções).
+
+Estrutura do PDF:
+
+Capa com título do manual + créditos do Dr. Emanuel (mesma linha do cabeçalho).
+
+Sumário com links internos (índice clicável).
+
+Todas as seções em ordem, preservando listas, quadros de destaque, tabelas com cabeçalho marcado e “zebra” sutil.
+
+Divisórias/Separadores entre seções na paleta definida.
+
+Rodapé com referências e nota: “Material de apoio rápido; não substitui protocolos institucionais.”
+
+Data de geração e numeração de páginas.
+
+QR code/link para acessar a versão interativa online.
+
+O PDF deve manter a hierarquia visual do site (títulos, subtítulos, bullets, cards/destaques transpostos para estático).
+
+Compatível para leitura offline e pronto para impressão sem perder legibilidade.
+
+Conteúdo
+
+Renderizar integralmente o “Manual de Bolso – Transplante Renal com DOADOR FALECIDO (HRBA)” com as seções já definidas:
+
+Internação & Pré-operatório
+
+Prescrição Inicial (Receptor)
+
+Intraoperatório
+
+Pós-op UTI (48–72h)
+
+Enfermaria (D2–D7) + Profilaxias
+
+Alta Hospitalar (D7–D10)
+
+Fluxos Legais (CET-PA/SNT)
+
+Adendo – Imunossupressão (IS)
+
+Nas seções com dados, usar tabelas claras; quando útil, oferecer a visão alternativa em cartões.
+
+Referências no final: KDIGO (2020); Sociedade Brasileira de Nefrologia (SBN); Associação Brasileira de Transplante de Órgãos (ABTO); Registro Brasileiro de Transplantes (RBT).
+
+Critérios de aceite
+
+Site: fácil de navegar no celular; TOC ativo; busca funcional; acordeões, abas, checklist e tooltips operantes.
+
+PDF: aparência e hierarquia equivalentes ao site; capa + sumário + seções completas; cores da paleta; referências e créditos incluídos.
+
+Duas opções claras para o usuário: “Explorar online (interativo)” ou “Baixar PDF (estático)”.

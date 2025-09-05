@@ -5,7 +5,11 @@ import { ExpandIcon, Combine, FileTextIcon } from "lucide-react";
 import SearchBar from "@/components/search-bar";
 import TableOfContents from "@/components/table-of-contents";
 import MedicalSection from "@/components/medical-section";
-import MedicalTable from "@/components/medical-table";
+import MedicalDataViewer from "@/components/medical-data-viewer";
+import MedicalChecklist from "@/components/medical-checklist";
+import AccordionList from "@/components/accordion-list";
+import GlossaryTooltip from "@/components/glossary-tooltip";
+import NavigationHelper from "@/components/navigation-helper";
 import PDFGenerator from "@/components/pdf-generator";
 
 const sections = [
@@ -70,17 +74,15 @@ export default function MedicalManual() {
     }
   };
 
-  const handleSearch = (term: string) => {
+  const handleSearch = (term: string, results: Array<{ sectionId: string; sectionTitle: string; matchCount: number }>) => {
     setSearchTerm(term);
-    if (term.length > 2) {
-      // Expand all sections that contain the search term
-      const matchingSections = sections.filter(section => {
-        const element = document.getElementById(section.id);
-        return element?.textContent?.toLowerCase().includes(term.toLowerCase());
-      });
-      
-      const newExpanded = new Set(matchingSections.map(s => s.id));
+    if (term.length > 2 && results.length > 0) {
+      // Expand sections that contain the search term
+      const newExpanded = new Set(results.map(r => r.sectionId));
       setExpandedSections(newExpanded);
+    } else if (term.length === 0) {
+      // Reset to all expanded when search is cleared
+      setExpandedSections(new Set(sections.map(s => s.id)));
     }
   };
 
@@ -107,7 +109,7 @@ export default function MedicalManual() {
   return (
     <div className="bg-background text-foreground font-sans min-h-screen">
       {/* Header */}
-      <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
+      <header className="bg-primary text-primary-foreground shadow-lg">
         <div className="container mx-auto px-4 py-6">
           <h1 className="text-2xl md:text-3xl font-bold mb-2" data-testid="title-main">
             Manual de Bolso – Transplante Renal com Doador Falecido (HRBA)
@@ -119,11 +121,11 @@ export default function MedicalManual() {
       </header>
 
       {/* Navigation Bar */}
-      <nav className="bg-secondary border-b border-border sticky top-[120px] md:top-[104px] z-40 no-print">
+      <nav className="bg-secondary border-b border-border no-print">
         <div className="container mx-auto px-4 py-3">
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="flex-1 max-w-md">
-              <SearchBar onSearch={handleSearch} data-testid="search-input" />
+              <SearchBar onSearch={handleSearch} sections={sections} data-testid="search-input" />
             </div>
             
             <div className="flex gap-2">
@@ -244,7 +246,7 @@ export default function MedicalManual() {
               onToggle={() => toggleSection("prescricao")}
               data-testid="section-prescricao"
             >
-              <MedicalTable
+              <MedicalDataViewer
                 data={prescricaoData}
                 columns={[
                   { key: "medicacao", header: "Medicação" },
@@ -326,7 +328,7 @@ export default function MedicalManual() {
                 </li>
               </ul>
 
-              <MedicalTable
+              <MedicalDataViewer
                 data={posUtiData}
                 columns={[
                   { key: "aspecto", header: "Aspecto" },
@@ -369,7 +371,7 @@ export default function MedicalManual() {
                 </li>
               </ul>
 
-              <MedicalTable
+              <MedicalDataViewer
                 data={profilaxiaData}
                 columns={[
                   { key: "alvo", header: "Alvo" },
