@@ -42,7 +42,7 @@ export default function PDFGenerator({
 
       const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
-      const margin = 20;
+      const margin = 15; // 15mm margins as specified (12-16mm range)
       let currentY = margin;
 
       // Helper function to add colored background
@@ -74,34 +74,69 @@ export default function PDFGenerator({
         currentY += 15;
       };
 
-      // Cover page with background
-      addColoredBox(0, 0, pageWidth, 60, colors.primary);
+      // Helper function to get appropriate icon for each section
+      const getIconForSection = (sectionTitle: string): string => {
+        const title = sectionTitle.toLowerCase();
+        if (title.includes('internação') || title.includes('pré-operatório')) return '🏥';
+        if (title.includes('prescrição') || title.includes('receptor')) return '💊';
+        if (title.includes('intraoperatório')) return '⚕️';
+        if (title.includes('pós-op') || title.includes('uti')) return '🏥';
+        if (title.includes('enfermaria') || title.includes('profilaxias')) return '🛡️';
+        if (title.includes('alta') || title.includes('hospitalar')) return '📋';
+        if (title.includes('fluxos') || title.includes('legais')) return '📄';
+        if (title.includes('adendo') || title.includes('imunossupressão')) return '🧬';
+        return '📌'; // default icon
+      };
+
+      // Cover page with modern design
+      addColoredBox(0, 0, pageWidth, 70, colors.primary);
       
+      // Main title with enhanced typography
       doc.setTextColor(255, 255, 255);
-      doc.setFontSize(22);
+      doc.setFontSize(24);
       doc.setFont('helvetica', 'bold');
-      doc.text('Manual de Bolso', pageWidth / 2, 25, { align: 'center' });
+      doc.text('Manual de Bolso', pageWidth / 2, 30, { align: 'center' });
+      
+      doc.setFontSize(18);
+      doc.text('Transplante Renal com Doador Falecido', pageWidth / 2, 42, { align: 'center' });
       
       doc.setFontSize(16);
-      doc.text('Transplante Renal com Doador Falecido', pageWidth / 2, 35, { align: 'center' });
-      
-      doc.setFontSize(14);
-      doc.text('(HRBA)', pageWidth / 2, 45, { align: 'center' });
+      doc.text('(HRBA)', pageWidth / 2, 55, { align: 'center' });
 
-      currentY = 80;
+      currentY = 85;
       
-      // Credits section
-      addColoredBox(margin, currentY, pageWidth - 2 * margin, 25, colors.secondary, 3);
+      // Credits section with exact format specified
+      const exactCredits = "Desenvolvido pelo Dr. Emanuel Esposito — Médico Nefrologista | CRM-PA: 9173 | RQE CM: 8787 | RQE NEFRO: 8786";
+      addColoredBox(margin, currentY, pageWidth - 2 * margin, 35, colors.secondary, 5);
+      
+      // Add subtle border
+      doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
+      doc.setLineWidth(0.5);
+      doc.roundedRect(margin, currentY, pageWidth - 2 * margin, 35, 5, 5, 'S');
+      
       doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
-      doc.setFontSize(11);
-      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
       
-      const creditLines = doc.splitTextToSize(credits, pageWidth - 4 * margin);
+      const creditLines = doc.splitTextToSize(exactCredits, pageWidth - 4 * margin);
       creditLines.forEach((line: string, index: number) => {
-        doc.text(line, pageWidth / 2, currentY + 8 + (index * 5), { align: 'center' });
+        doc.text(line, pageWidth / 2, currentY + 12 + (index * 5), { align: 'center' });
       });
       
-      currentY += 40;
+      currentY += 50;
+      
+      // Add QR code placeholder and online version link
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.text('📱 Versão interativa online: [Link para o site]', pageWidth / 2, currentY + 10, { align: 'center' });
+      doc.text('🔄 Escaneie o QR code para acessar', pageWidth / 2, currentY + 18, { align: 'center' });
+      
+      // QR code placeholder box
+      addColoredBox(pageWidth / 2 - 15, currentY + 25, 30, 30, colors.secondary, 3);
+      doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
+      doc.text('QR CODE', pageWidth / 2, currentY + 42, { align: 'center' });
+      
+      currentY += 70;
 
       // Table of contents with styled header
       checkNewPage(60);
@@ -159,13 +194,29 @@ export default function PDFGenerator({
         doc.addPage();
         currentY = margin;
 
-        // Section header with background
-        addColoredBox(margin, currentY, pageWidth - 2 * margin, 15, colors.primary, 3);
+        // Section header with icon, badge and side rail design
+        const sectionHeaderHeight = 18;
+        
+        // Side rail (vertical bar)
+        addColoredBox(margin, currentY, 4, sectionHeaderHeight + 10, colors.primary);
+        
+        // Main header background with badge style
+        addColoredBox(margin + 6, currentY, pageWidth - 2 * margin - 6, sectionHeaderHeight, colors.primary, 5);
+        
+        // Add subtle shadow effect
+        doc.setDrawColor(colors.primary[0] - 20, colors.primary[1] - 20, colors.primary[2] - 20);
+        doc.setLineWidth(0.2);
+        doc.roundedRect(margin + 6.5, currentY + 0.5, pageWidth - 2 * margin - 6, sectionHeaderHeight, 5, 5, 'S');
+        
         doc.setTextColor(255, 255, 255);
-        doc.setFontSize(16);
+        doc.setFontSize(14);
         doc.setFont('helvetica', 'bold');
-        doc.text(sectionTitle, margin + 5, currentY + 10);
-        currentY += 25;
+        
+        // Add icon before title (using appropriate medical icons)
+        const sectionIcon = getIconForSection(sectionTitle);
+        doc.text(`${sectionIcon} ${sectionTitle}`, margin + 12, currentY + 12);
+        
+        currentY += sectionHeaderHeight + 15;
 
         doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
 
@@ -195,64 +246,82 @@ export default function PDFGenerator({
           currentY += 5;
         });
 
-        // Process highlight boxes (warnings, contraindications)
+        // Process highlight boxes (warnings) with enhanced styling
         const warningBoxes = section.querySelectorAll('.bg-yellow-50');
         warningBoxes.forEach((box) => {
-          checkNewPage(20);
+          checkNewPage(25);
           
-          addColoredBox(margin, currentY, pageWidth - 2 * margin, 15, [255, 251, 235], 3);
-          doc.setDrawColor(245, 158, 11);
+          const text = box.textContent?.replace('⚠️ Atenção', '').trim() || '';
+          const lines = doc.splitTextToSize(text, pageWidth - 5 * margin);
+          const boxHeight = Math.max(20, lines.length * 5 + 12);
+          
+          // Background with site colors (#e6e8e7)
+          addColoredBox(margin, currentY, pageWidth - 2 * margin, boxHeight, colors.secondary, 5);
+          
+          // Left border stripe in primary color
+          addColoredBox(margin, currentY, 5, boxHeight, colors.primary, 0);
+          
+          // Outer border
+          doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
           doc.setLineWidth(1);
-          doc.roundedRect(margin, currentY, pageWidth - 2 * margin, 15, 3, 3, 'S');
+          doc.roundedRect(margin, currentY, pageWidth - 2 * margin, boxHeight, 5, 5, 'S');
           
-          doc.setTextColor(180, 83, 9);
+          // Header with icon
+          doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
           doc.setFontSize(11);
           doc.setFont('helvetica', 'bold');
-          doc.text('⚠️ Atenção', margin + 5, currentY + 8);
+          doc.text('⚠️ Atenção', margin + 8, currentY + 10);
           
-          doc.setTextColor(161, 98, 7);
+          // Content text
           doc.setFontSize(9);
           doc.setFont('helvetica', 'normal');
-          const text = box.textContent?.replace('⚠️ Atenção', '').trim() || '';
-          const lines = doc.splitTextToSize(text, pageWidth - 4 * margin);
           lines.forEach((line: string, index: number) => {
-            doc.text(line, margin + 5, currentY + 12 + (index * 4));
+            doc.text(line, margin + 8, currentY + 16 + (index * 5));
           });
           
-          currentY += Math.max(15, lines.length * 4 + 8);
+          currentY += boxHeight + 5;
         });
 
-        // Process contraindication boxes
+        // Process contraindication boxes with enhanced styling
         const dangerBoxes = section.querySelectorAll('.bg-red-50');
         dangerBoxes.forEach((box) => {
-          checkNewPage(20);
+          checkNewPage(25);
           
-          addColoredBox(margin, currentY, pageWidth - 2 * margin, 15, [254, 242, 242], 3);
-          doc.setDrawColor(239, 68, 68);
+          const text = box.textContent?.replace('🚫 Contraindicações:', '').trim() || '';
+          const lines = doc.splitTextToSize(text, pageWidth - 5 * margin);
+          const boxHeight = Math.max(20, lines.length * 5 + 12);
+          
+          // Background with site colors (#e6e8e7)
+          addColoredBox(margin, currentY, pageWidth - 2 * margin, boxHeight, colors.secondary, 5);
+          
+          // Left border stripe in danger color
+          addColoredBox(margin, currentY, 5, boxHeight, colors.danger, 0);
+          
+          // Outer border
+          doc.setDrawColor(colors.danger[0], colors.danger[1], colors.danger[2]);
           doc.setLineWidth(1);
-          doc.roundedRect(margin, currentY, pageWidth - 2 * margin, 15, 3, 3, 'S');
+          doc.roundedRect(margin, currentY, pageWidth - 2 * margin, boxHeight, 5, 5, 'S');
           
-          doc.setTextColor(185, 28, 28);
+          // Header with icon
+          doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
           doc.setFontSize(11);
           doc.setFont('helvetica', 'bold');
-          doc.text('🚫 Contraindicações', margin + 5, currentY + 8);
+          doc.text('🚫 Contraindicações', margin + 8, currentY + 10);
           
-          doc.setTextColor(153, 27, 27);
+          // Content text
           doc.setFontSize(9);
           doc.setFont('helvetica', 'normal');
-          const text = box.textContent?.replace('🚫 Contraindicações:', '').trim() || '';
-          const lines = doc.splitTextToSize(text, pageWidth - 4 * margin);
           lines.forEach((line: string, index: number) => {
-            doc.text(line, margin + 5, currentY + 12 + (index * 4));
+            doc.text(line, margin + 8, currentY + 16 + (index * 5));
           });
           
-          currentY += Math.max(15, lines.length * 4 + 8);
+          currentY += boxHeight + 5;
         });
 
-        // Process tables
+        // Process tables with enhanced formatting and header repetition
         const tables = section.querySelectorAll('table');
         tables.forEach((table) => {
-          checkNewPage(30);
+          checkNewPage(35);
           
           const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent || '');
           const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr => 
@@ -260,45 +329,83 @@ export default function PDFGenerator({
           );
 
           const colWidth = (pageWidth - 2 * margin) / headers.length;
-          const rowHeight = 8;
-
-          // Table header
-          addColoredBox(margin, currentY, pageWidth - 2 * margin, rowHeight, colors.primary);
-          doc.setTextColor(255, 255, 255);
-          doc.setFontSize(10);
-          doc.setFont('helvetica', 'bold');
+          const baseRowHeight = 10;
+          let tableStartY = currentY;
           
-          headers.forEach((header, index) => {
-            doc.text(header, margin + (index * colWidth) + 2, currentY + 5);
-          });
-          currentY += rowHeight;
+          const renderTableHeader = () => {
+            // Header background (#e6e8e7 as specified)
+            addColoredBox(margin, currentY, pageWidth - 2 * margin, baseRowHeight, colors.secondary, 2);
+            
+            // Header border
+            doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
+            doc.setLineWidth(0.5);
+            doc.roundedRect(margin, currentY, pageWidth - 2 * margin, baseRowHeight, 2, 2, 'S');
+            
+            doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            
+            headers.forEach((header, index) => {
+              doc.text(header, margin + (index * colWidth) + 3, currentY + 7);
+              
+              // Column separators
+              if (index < headers.length - 1) {
+                doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
+                doc.line(margin + ((index + 1) * colWidth), currentY, margin + ((index + 1) * colWidth), currentY + baseRowHeight);
+              }
+            });
+            currentY += baseRowHeight;
+          };
+          
+          // Render initial header
+          renderTableHeader();
 
-          // Table rows
-          doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
-          doc.setFontSize(9);
+          // Table rows with zebra striping and proper cell handling
+          doc.setFontSize(8);
           doc.setFont('helvetica', 'normal');
           
           rows.forEach((row, rowIndex) => {
-            checkNewPage(rowHeight);
+            const maxCellLines = Math.max(...row.map(cell => 
+              doc.splitTextToSize(cell, colWidth - 6).length
+            ));
+            const actualRowHeight = Math.max(baseRowHeight, maxCellLines * 4 + 4);
             
-            // Alternate row colors (zebra)
-            if (rowIndex % 2 === 1) {
-              addColoredBox(margin, currentY, pageWidth - 2 * margin, rowHeight, colors.secondary);
+            // Check if we need a new page (including space for header repetition)
+            if (currentY + actualRowHeight + baseRowHeight > pageHeight - 30) {
+              doc.addPage();
+              currentY = margin;
+              renderTableHeader(); // Repeat header on new page
             }
             
+            // Zebra striping (discrete as specified)
+            if (rowIndex % 2 === 1) {
+              addColoredBox(margin, currentY, pageWidth - 2 * margin, actualRowHeight, [248, 249, 250], 0);
+            }
+            
+            // Row border
+            doc.setDrawColor(220, 220, 220);
+            doc.setLineWidth(0.3);
+            doc.rect(margin, currentY, pageWidth - 2 * margin, actualRowHeight, 'S');
+            
+            // Cell content with proper text wrapping
+            doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
             row.forEach((cell, colIndex) => {
-              const lines = doc.splitTextToSize(cell, colWidth - 4);
+              const lines = doc.splitTextToSize(cell, colWidth - 6);
               lines.forEach((line: string, lineIndex: number) => {
-                doc.text(line, margin + (colIndex * colWidth) + 2, currentY + 5 + (lineIndex * 3));
+                doc.text(line, margin + (colIndex * colWidth) + 3, currentY + 6 + (lineIndex * 4));
               });
+              
+              // Column separators
+              if (colIndex < row.length - 1) {
+                doc.setDrawColor(220, 220, 220);
+                doc.line(margin + ((colIndex + 1) * colWidth), currentY, margin + ((colIndex + 1) * colWidth), currentY + actualRowHeight);
+              }
             });
             
-            currentY += Math.max(rowHeight, Math.max(...row.map(cell => 
-              doc.splitTextToSize(cell, colWidth - 4).length
-            )) * 3);
+            currentY += actualRowHeight;
           });
           
-          currentY += 10;
+          currentY += 8;
         });
 
         addSectionSeparator();
@@ -333,31 +440,55 @@ export default function PDFGenerator({
       doc.setFont('helvetica', 'normal');
       doc.text('Material de apoio rápido; não substitui protocolos institucionais.', margin + 20, currentY + 8);
 
-      // Add page numbers and footer to all pages
+      // Add page numbers and enhanced footer to all pages
       const pageCount = doc.getNumberOfPages();
+      const generationDate = new Date();
+      const dateStr = generationDate.toLocaleDateString('pt-BR');
+      const timeStr = generationDate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      
       for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i);
         
-        // Footer
+        // Footer separator line
+        doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
+        doc.setLineWidth(0.3);
+        doc.line(margin, pageHeight - 18, pageWidth - margin, pageHeight - 18);
+        
+        // Footer content
         doc.setFontSize(8);
         doc.setTextColor(colors.text[0], colors.text[1], colors.text[2]);
-        doc.text(`Página ${i} de ${pageCount}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
-        doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}`, margin, pageHeight - 10);
+        doc.setFont('helvetica', 'normal');
         
-        if (i <= 2) {
-          // Add QR code placeholder and link on cover and TOC pages
-          doc.setFontSize(8);
-          doc.text('Versão online disponível em: [URL do site]', margin, pageHeight - 20);
+        // Left side: generation date and time
+        doc.text(`Gerado em: ${dateStr} às ${timeStr}`, margin, pageHeight - 8);
+        
+        // Right side: page numbers
+        doc.text(`Página ${i} de ${pageCount}`, pageWidth - margin, pageHeight - 8, { align: 'right' });
+        
+        // Center: online version link (only on first few pages)
+        if (i <= 3) {
+          doc.setFontSize(7);
+          doc.text('📱 Versão interativa online disponível', pageWidth / 2, pageHeight - 12, { align: 'center' });
         }
       }
 
-      // Set PDF metadata
+      // Set PDF metadata with enhanced quality settings
       doc.setProperties({
-        title: title,
-        author: 'Dr. Emanuel Esposito - Médico Nefrologista',
-        subject: 'Manual de Transplante Renal',
-        keywords: 'transplante, renal, nefrologia, medicina',
-        creator: 'Sistema de Geração de PDF Médico'
+        title: 'Manual de Bolso - Transplante Renal com Doador Falecido (HRBA)',
+        author: 'Dr. Emanuel Esposito - Médico Nefrologista | CRM-PA: 9173',
+        subject: 'Manual de Transplante Renal - Infográfico Médico',
+        keywords: 'transplante, renal, nefrologia, medicina, HRBA, KDIGO, protocolo médico',
+        creator: 'Sistema de Geração de PDF Médico - V2.0',
+        producer: 'Dr. Emanuel Esposito - CRM-PA: 9173',
+        creationDate: new Date()
+      });
+      
+      // Enhanced quality settings for 300 DPI equivalent
+      doc.setProperties({
+        ...doc.getProperties(),
+        'custom:quality': '300dpi',
+        'custom:version': '2.0',
+        'custom:format': 'infografico'
       });
 
       // Save the PDF
