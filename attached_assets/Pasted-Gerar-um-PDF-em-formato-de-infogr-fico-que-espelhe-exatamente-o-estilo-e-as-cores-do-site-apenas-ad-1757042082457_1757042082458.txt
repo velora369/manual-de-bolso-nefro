@@ -1,0 +1,70 @@
+Gerar um PDF em formato de infográfico que espelhe exatamente o estilo e as cores do site, apenas adaptando para leitura offline/ impressão.
+
+Identidade (usar o MESMO do site)
+
+Cores: Branco #ffffff, Verde acinzentado #779d86 (principal), Cinza claro #e6e8e7.
+
+Tipografia: a mesma do site.
+
+Ícones/estilo: mesmos ícones e linguagem visual do site (clean, moderno, cartões/boxes, sombras suaves, divisórias finas).
+
+Créditos obrigatórios
+
+Na capa, logo abaixo do título:
+“Desenvolvido pelo Dr. Emanuel Esposito — Médico Nefrologista | CRM-PA: 9173 | RQE CM: 8787 | RQE NEFRO: 8786”.
+
+Formato do infográfico
+
+Tamanho A4 vertical, podendo usar múltiplas páginas (sem esmagar conteúdo).
+
+Margens 12–16 mm; uma coluna com grid interno para organizar títulos, listas, tabelas e boxes.
+
+Data de geração e Página X de Y no rodapé.
+
+Estrutura
+
+Capa (título do manual + créditos do Dr. Emanuel).
+
+Sumário clicável (mesmas seções do site).
+
+Corpo: todas as seções em ordem, transformadas em blocos de infográfico.
+
+Rodapé final: Referências (KDIGO 2020; SBN; ABTO; RBT) + nota “Material de apoio rápido; não substitui protocolos institucionais.”
+
+QR code/link para a versão interativa online.
+
+Conversão fiel do visual do site para o PDF
+
+Títulos de seção com ícone + badge na cor #779d86 e uma barra lateral/“rail” sutil do mesmo tom.
+
+Listas sempre com bullets/checks reais e espaçamento confortável (nunca texto corrido).
+
+Boxes de destaque (“Atenção”, “Contraindicações”, “Dica”) com faixa/borda na cor principal e fundo #e6e8e7.
+
+Tabelas com cabeçalho em #e6e8e7, zebra discreta, linhas finas; repetir cabeçalho em quebras de página; não quebrar célula no meio.
+
+Elementos interativos do site → estático no PDF:
+
+Acordeões: sair abertos.
+
+Abas (“Tabela | Cartões”): apresentar as duas visões em sequência, com subtítulos.
+
+Tooltips/Glossário: virar notas curtas inline ou no fim da seção.
+
+Checklist: exibir como lista com caixas marcadas (✓).
+
+Manter a hierarquia visual do site (tamanhos de títulos/subtítulos, espaçamentos, divisórias, badges, ícones).
+
+Qualidade do arquivo
+
+300 DPI, fontes incorporadas, ícones e formas em vetor; texto nítido.
+
+Tamanho final otimizado; metadados (título/autor) preenchidos.
+
+Critérios de aceite (obrigatórios)
+
+O PDF parece o site (mesma paleta, tipografia, ícones, cartões, divisórias, badges).
+
+Sumário e marcadores clicáveis; tabelas legíveis; boxes de “Atenção/Contraindicações” preservados.
+
+Capa com créditos do Dr. Emanuel, QR para o site, data e paginação incluídas.
